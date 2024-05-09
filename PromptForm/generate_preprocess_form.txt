@@ -1,0 +1,5 @@
+나는 일주일에 자동차를 <num_use_car>번 이용하고, 겨울철에 집을 난방하는데 <category_energy>를 이용해.
+그리고 일주일에 <num_eat_meat>끼를 고기가 들어간 음식을 먹으며, 신규 전자제품이나 의류는 <buy_day>일마다 구매해.
+또, 일주일에 <num_of_trash>번 쓰레기를 배출하고, <day_of_recycle>일마다 재활용을 하며, 하루에 <amount_of_water>L의 물을 사용해.
+마지막으로 지난 1년간 <num_of_travel>번 여행했어.
+내가 환경을 위해 할 수 있을만한 미션을 하나만 제시해줘.
