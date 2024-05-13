@@ -45,7 +45,8 @@ class OpenAIModel:
 
     def __call__(self,
                  prompt: dict,
-                 video: Optional[cv2.VideoCapture] = None):
+                 video: Optional[cv2.VideoCapture] = None,
+                 image: Optional[bytes] = None):
         preprocessed_prompt = self.preprocess(prompt, video)
         result = self.generate(preprocessed_prompt)
         postprocessed_result = self.postprocess(result)
