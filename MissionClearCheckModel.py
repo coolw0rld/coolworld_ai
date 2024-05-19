@@ -33,9 +33,9 @@ class MissionClearCheckImageModel(LanguageModel):
         return {"system":system, "user":final_prompt, "image":[imageURL]}
 
     def postprocess(self, result: str) -> bool:
-        if result == "예":
+        if "예" in result:
             return True
-        elif result == "아니오":
+        elif "아니오" in result:
             return False
         else:
             # result를 바탕으로 긍부정 분류 모델 꽂아넣어 그거 결과로

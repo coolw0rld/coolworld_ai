@@ -27,7 +27,7 @@ class LanguageVotingModel:
     def voting(self, *args) -> str:
         assert len(args) >= 2, Config.VOTING_MODEL_LESS_SENTENCE_ERROR_MESSAGE
 
-        print(args)
+        #print(args)
 
 
         score = {s: 0.0 for s in args}
