@@ -15,7 +15,7 @@ class MissionGenerateModel(LanguageModel):
                  path_of_form: str,
                  language_voting_model: LanguageVotingModel,
                  gpt_model: str = "gpt-4-turbo",
-                 claude_model: str = "claude-3-haiku-20240307",
+                 claude_model: str = "claude-3-opus-20240229",
                  max_tokens: int = 200,
                  form_encoding="UTF8"
                  ):

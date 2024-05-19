@@ -47,9 +47,29 @@ class LanguageModel:
         return result
 
     def generate(self,
-                 content: dict) -> str:
-        gpt_params = {
+                 content: list) -> str:
+        gpt4_params = {
             "model": self.gpt_model,
+            "messages": [
+                {
+                    "role": "system",
+                    "content": content["system"],
+                },
+                {
+                    "role": "user",
+                    "content": [
+                        {
+                            "type": "text",
+                            "text": content["user"],
+                        }
+                    ],
+                },
+            ],
+            "max_tokens": self.max_tokens,
+        }
+
+        gpt4o_params = {
+            "model": "gpt-4o",
             "messages": [
                 {
                     "role": "system",
@@ -88,16 +108,18 @@ class LanguageModel:
 
         if len(content["image"]) > 0:
             for c in content["image"]:
-                gpt_params["messages"][1]["content"].append({"type":"image_url", "image_url":{"url":c}})
+                gpt4_params["messages"][1]["content"].append({"type":"image_url", "image_url":{"url":c}})
+                gpt4o_params["messages"][1]["content"].append({"type": "image_url", "image_url": {"url": c}})
 
                 image_data = base64.b64encode(httpx.get(c).content).decode("utf-8")
                 claude_params["messages"][0]["content"].append({"type":"image", "source":{"type":"base64", "media_type":"image/jpeg", "data":image_data}})
 
 
-        gpt_result = self.openai_client.chat.completions.create(**gpt_params).choices[0].message.content
+        gpt4_result = self.openai_client.chat.completions.create(**gpt4_params).choices[0].message.content
+        gpt4o_result = self.openai_client.chat.completions.create(**gpt4o_params).choices[0].message.content
         claude_result = self.anthropic_client.messages.create(**claude_params).content[0].text
 
-        return self.languageVotingModel.voting(gpt_result, claude_result)
+        return self.languageVotingModel.voting(gpt4_result, claude_result, gpt4o_result)
 
     def __call__(self,
                  prompt: dict,
