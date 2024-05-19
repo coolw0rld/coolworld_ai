@@ -25,7 +25,7 @@ class MissionGenerateModel(LanguageModel):
                  gpt_model: str = "gpt-4-turbo",
                  claude_model: str = "claude-3-opus-20240229",
                  max_tokens: int = 200,
-                 temperature: float = 0.6,
+                 temperature: float = 1.0,
                  form_encoding="UTF8"
                  ):
         super().__init__(gpt_model, claude_model, max_tokens, temperature, language_voting_model)

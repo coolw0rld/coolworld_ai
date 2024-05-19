@@ -25,6 +25,7 @@ def check_clear():
     mission = str(json_data["mission"])
     image_url = str(json_data["image"])
     result = clear_check_model_image({"mission": mission}, image_url)
+    result = "success" if result else "fail"
 
     return json.dumps({"result":result})
 
