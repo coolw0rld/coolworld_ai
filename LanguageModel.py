@@ -32,7 +32,6 @@ class LanguageModel:
 
         self.openai_client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY", f"{Config.OPENAI_TOKEN}"))
         self.anthropic_client = Anthropic(api_key=os.environ.get("ANTHROPIC_API_KEY", f"{Config.ANTHROPIC_TOKEN}"))
-        self.meta_client = MetaAI()
 
         self.gpt_model = gpt_model
         self.claude_model = claude_model

@@ -20,6 +20,7 @@ class MissionGenerateModel(LanguageModel):
                  form_encoding="UTF8"
                  ):
         super().__init__(gpt_model, claude_model, max_tokens, language_voting_model)
+        self.form_encoding = form_encoding
 
         with open(path_of_form, "r", encoding=form_encoding) as f:
             self.form = f.read()
@@ -28,6 +29,10 @@ class MissionGenerateModel(LanguageModel):
         final_prompt = deepcopy(self.form)
         for key, answer in prompt.items():
             final_prompt = final_prompt.replace(f"<{key}>", str(answer))
+        if system=="":
+            with open("./PromptForm/mission_generate_system_prompt.txt", "r", encoding=self.form_encoding) as f:
+                system = f.read()
+
         return {"system":system, "user":final_prompt, "image":[]}
 
     def postprocess(self, result: str, **kwargs) -> str:

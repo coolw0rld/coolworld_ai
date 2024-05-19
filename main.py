@@ -24,7 +24,7 @@ if __name__=="__main__":
     mission = generate_model(survey_result)
     print(f"미션 : {mission}")
 
-    f = open('./test/input.jpg', 'rb')
-    result = clear_check_model_image({"mission": mission}, "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Gfp-wisconsin-madison-the-nature-boardwalk.jpg/2560px-Gfp-wisconsin-madison-the-nature-boardwalk.jpg")
-    f.close()
-    print(f"{'클리어 성공' if result else '클리어 실패'}")
+    # f = open('./test/input.jpg', 'rb')
+    # result = clear_check_model_image({"mission": mission}, "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Gfp-wisconsin-madison-the-nature-boardwalk.jpg/2560px-Gfp-wisconsin-madison-the-nature-boardwalk.jpg")
+    # f.close()
+    # print(f"{'클리어 성공' if result else '클리어 실패'}")
