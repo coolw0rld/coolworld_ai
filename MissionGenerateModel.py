@@ -25,9 +25,10 @@ class MissionGenerateModel(LanguageModel):
                  gpt_model: str = "gpt-4-turbo",
                  claude_model: str = "claude-3-opus-20240229",
                  max_tokens: int = 200,
+                 temperature: float = 0.6,
                  form_encoding="UTF8"
                  ):
-        super().__init__(gpt_model, claude_model, max_tokens, language_voting_model)
+        super().__init__(gpt_model, claude_model, max_tokens, temperature, language_voting_model)
         self.form_encoding = form_encoding
 
         with open(path_of_form, "r", encoding=form_encoding) as f:
@@ -42,8 +43,6 @@ class MissionGenerateModel(LanguageModel):
         if system=="":
             with open("./PromptForm/mission_generate_system_prompt.txt", "r", encoding=self.form_encoding) as f:
                 system = f.read()
-
-        print(final_prompt)
 
         return {"system":system, "user":final_prompt, "image":[]}
 

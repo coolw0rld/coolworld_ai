@@ -18,9 +18,10 @@ class MissionClearCheckImageModel(LanguageModel):
                  gpt_model: str = "gpt-4-vision-preview",
                  claude_model: str = "claude-3-haiku-20240307",
                  max_tokens: int = 200,
+                 temperature: float = 0.0,
                  form_encoding="UTF8",
                  ):
-        super().__init__(gpt_model, claude_model, max_tokens, language_voting_model)
+        super().__init__(gpt_model, claude_model, max_tokens, temperature, language_voting_model)
 
         with open(path_of_form, "r", encoding=form_encoding) as f:
             self.form = f.read()

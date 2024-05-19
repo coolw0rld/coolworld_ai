@@ -25,6 +25,7 @@ class LanguageModel:
                  gpt_model: str,
                  claude_model: str,
                  max_tokens: int,
+                 temperature: float,
                  language_voting_model: LanguageVotingModel
                  ):
         assert gpt_model in Config.GPT_MODEL_LIST, Config.GPT_WRONG_MODEL_ERROR_MESSAGE
@@ -37,6 +38,7 @@ class LanguageModel:
         self.claude_model = claude_model
 
         self.max_tokens = max_tokens
+        self.temperature = temperature
 
         self.languageVotingModel = language_voting_model
 
@@ -66,6 +68,7 @@ class LanguageModel:
                 },
             ],
             "max_tokens": self.max_tokens,
+            "temperature": self.temperature
         }
 
         gpt4o_params = {
@@ -86,6 +89,7 @@ class LanguageModel:
                 },
             ],
             "max_tokens": self.max_tokens,
+            "temperature": self.temperature
         }
 
 
@@ -104,6 +108,7 @@ class LanguageModel:
                 },
             ],
             "max_tokens": self.max_tokens,
+            "temperature": self.temperature
         }
 
         if len(content["image"]) > 0:
