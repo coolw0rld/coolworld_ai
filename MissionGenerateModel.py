@@ -7,6 +7,7 @@
 from typing import *
 from LanguageModel import LanguageModel
 from copy import deepcopy
+import datetime
 from LanguageVotingModel import LanguageVotingModel
 
 
@@ -34,6 +35,9 @@ class MissionGenerateModel(LanguageModel):
         with open(path_of_form, "r", encoding=form_encoding) as f:
             self.form = f.read()
 
+    def getDate(self):
+        return datetime.datetime.now().strftime("%Y년 %m월 %d일 %H시 %M분 %S초")
+
     def preprocess(self, prompt: list, imageUrl: str = None, system: str = "") -> list:
         final_prompt = deepcopy(self.form)
 
@@ -42,7 +46,7 @@ class MissionGenerateModel(LanguageModel):
 
         if system=="":
             with open("./PromptForm/mission_generate_system_prompt.txt", "r", encoding=self.form_encoding) as f:
-                system = f.read()
+                system = f.read().replace("<datetime>", self.getDate())
 
         return {"system":system, "user":final_prompt, "image":[]}
 
